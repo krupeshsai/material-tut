@@ -9,9 +9,11 @@ function App() {
         <Route exact path="/">
           <Notes />
         </Route>
+
         <Route path="/create">
           <Create />
         </Route>
+        
       </Switch>
     </Router>
   );
