@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import {Typography} from "@material-ui/core"
+import {FormControlLabel, Radio, Typography} from "@material-ui/core"
 import {Button} from '@material-ui/core';
 import {TextField} from '@material-ui/core';
 import { Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
+import { RadioGroup } from '@material-ui/core';
+import { FormControl } from '@material-ui/core';
+import { FormLabel } from '@material-ui/core';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
 const useStyles = makeStyles({
@@ -21,6 +24,7 @@ export default function Create() {
   const [details , setDetails] =useState("")
   const [titleError,setTitleError] = useState(false);
   const [detailsError , setDetailsError] =useState(false)
+  const [category , setCategory] = useState("todo")
 
 
   const handleClick = (e) => {
@@ -29,11 +33,8 @@ export default function Create() {
     if(title && details){
       console.log(title)
       console.log(details)
+      console.log(category)
     }
-
-    setTitle('')
-    setDetails('')
-
 
     setTitleError(false)
     setDetailsError(false)
@@ -80,13 +81,26 @@ export default function Create() {
         error={detailsError}
         ></TextField>
 
-        <Button 
+
+      <FormControl>
+      <FormLabel>Note Category</FormLabel>
+      <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)}>
+        <FormControlLabel value="money" control={<Radio/>} label= "Money"/>
+        <FormControlLabel value="todo" control={<Radio/>} label= "To Do"/>
+        <FormControlLabel value="work" control={<Radio/>} label= "Work"/>
+        <FormControlLabel value="reminders" control={<Radio/>} label= "Reminders"/>
+      </RadioGroup>
+      
+    
+
+        <Button className={classes.field} 
         type="submit" 
         color="secondary" 
         variant="contained"
         endIcon={<KeyboardArrowRightIcon />}>
         Submit
       </Button>
+      </FormControl>
       </form>
 
      
