@@ -31,10 +31,6 @@ export default function Create() {
       console.log(details)
     }
 
-    setTitle('')
-    setDetails('')
-
-
     setTitleError(false)
     setDetailsError(false)
 
@@ -88,9 +84,6 @@ export default function Create() {
         Submit
       </Button>
       </form>
-
-     
-
 
     </Container>
   )
