@@ -8,6 +8,7 @@ import { RadioGroup } from '@material-ui/core';
 import { FormControl } from '@material-ui/core';
 import { FormLabel } from '@material-ui/core';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles({
   field : {
@@ -25,16 +26,23 @@ export default function Create() {
   const [titleError,setTitleError] = useState(false);
   const [detailsError , setDetailsError] =useState(false)
   const [category , setCategory] = useState("todo")
+  const history = useHistory();
 
 
   const handleClick = (e) => {
     e.preventDefault()
 
-    if(title && details){
-      console.log(title)
-      console.log(details)
-      console.log(category)
-    }
+    if(title && details) {
+      fetch("  http://localhost:7000/notes" , {
+        method : "Post",
+        headers:{"Content-Type": "application/json"},
+        body: JSON.stringify({title,details, category})
+      }).then(()=> {
+        console.log("new note added")
+        history.push("/")
+      })
+    
+  }
 
     setTitleError(false)
     setDetailsError(false)
