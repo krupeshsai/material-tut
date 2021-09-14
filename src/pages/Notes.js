@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Grid } from '@material-ui/core'
-import { Paper } from '@material-ui/core'
+import NoteCard from '../components/NoteCard'
 
 export default function Notes() {
 
@@ -12,13 +12,22 @@ export default function Notes() {
     .then(data => {setNotes(data)})
   },[])
 
+ 
+    const handleDelete = async (id) => {
+      await fetch('http://localhost:7000/notes/' + id, {
+        method: 'DELETE'
+      })
+      const newNotes = notes.filter(note => note.id !== id)
+      setNotes(newNotes)
+    
+  }
 
   return (
     <Container>
-    <Grid container>
+    <Grid container spacing={3}>
      {notes.map(note => 
        <Grid item xs={12} md={6} lg ={4} key= {note.id}>
-         <Paper>{note.title}</Paper>
+         <NoteCard prop = {note} remove={handleDelete}/>
        </Grid>
      )}
      </Grid>
