@@ -1,8 +1,9 @@
+import { useHistory, useLocation } from "react-router";
 import { Drawer, makeStyles, Typography } from "@material-ui/core";
 import { List , ListItem , ListItemIcon , ListItemText} from "@material-ui/core"
-import { AppBar, Toolbar } from "@material-ui/core"
 import { AddCircleOutlineOutlined, SubjectOutlined } from "@material-ui/icons";
-import { useHistory, useLocation } from "react-router";
+import { AppBar, Toolbar } from "@material-ui/core"
+import { Avatar } from "@material-ui/core";
 import { format } from "date-fns";
 const drawerWidth = 240;
 
@@ -36,6 +37,9 @@ const useStyle = makeStyles((theme)=> {
           toolBar: theme.mixins.toolbar,
           date:{
               flexGrow: 1
+          },
+          avatar:{
+              marginLeft:theme.spacing(2)
           }
 }
    
@@ -69,7 +73,9 @@ const Layout = ({ children }) => {
             <Toolbar>
                 <Typography className={classes.date}>{format(new Date() , "do MMMM Y")}</Typography>
                 <Typography>Sammy</Typography>
+                <Avatar src="/avatar.png" className={classes.avatar}/>
             </Toolbar>
+            
         </AppBar>
 
         <Drawer 
