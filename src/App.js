@@ -3,6 +3,7 @@ import Notes from './pages/Notes'
 import Create from './pages/Create'
 import { createTheme, ThemeProvider } from '@material-ui/core'
 import { purple } from '@material-ui/core/colors';
+import Layout from './components/Layout';
 
 
 
@@ -25,6 +26,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
     <Router>
+    <Layout>
       <Switch>
         <Route exact path="/">
           <Notes />
@@ -35,6 +37,7 @@ function App() {
         </Route>
         
       </Switch>
+      </Layout>
     </Router>
     </ThemeProvider>
   );
